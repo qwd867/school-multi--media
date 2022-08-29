@@ -31,6 +31,9 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QSlider" name="hSlider_progressBar">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>

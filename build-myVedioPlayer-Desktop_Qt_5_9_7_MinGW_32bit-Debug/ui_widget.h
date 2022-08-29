@@ -66,6 +66,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         hSlider_progressBar = new QSlider(widget_3);
         hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
+        hSlider_progressBar->setMouseTracking(true);
         hSlider_progressBar->setOrientation(Qt::Horizontal);
 
         verticalLayout->addWidget(hSlider_progressBar);

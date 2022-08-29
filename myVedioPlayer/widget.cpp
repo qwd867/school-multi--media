@@ -25,7 +25,16 @@ Widget::Widget(QWidget *parent) :
     // !!!!!!!!!!此处可修改信号与槽!!!!!!!!!!!!!!
     ui->hSlider_voice->setValue(50);//初始化滑动条大小50
 
-   // connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_voice)
+    //固定进度条长度：ui->hSlider_progressBar->setRange(0,100000);
+
+    //变换进度条长度
+    connect(myplayer,&QMediaPlayer::durationChanged,ui->hSlider_progressBar,[&](qint64 temp){
+         ui->hSlider_progressBar->setRange(0,(int)temp);
+    });
+
+    //进度条位置变化
+    connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_progressBar,&QSlider::setValue);
+
 }
 
 Widget::~Widget()
@@ -105,7 +114,13 @@ void Widget::on_pushButton_open_clicked()
 
 }
 
-void Widget::on_horizontalSlider_progressBar_valueChanged(int value)
+void Widget::on_hSlider_voice_valueChanged(int value)
 {
     myplayer->setVolume(value);
+}
+
+void Widget::on_hSlider_progressBar_valueChanged(int value)
+{
+    //加了这行代码后视频播放就变得一卡一卡的！！！！
+   //myplayer->setPosition(value);
 }

@@ -34,7 +34,9 @@ private slots:
 
     void on_pushButton_open_clicked();
 
-    void on_horizontalSlider_progressBar_valueChanged(int value);
+    void on_hSlider_voice_valueChanged(int value);
+
+    void on_hSlider_progressBar_valueChanged(int value);
 
 private:
     Ui::Widget *ui;
