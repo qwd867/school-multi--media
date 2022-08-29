@@ -24,6 +24,8 @@ Widget::Widget(QWidget *parent) :
     myplayer->setVolume(50);//初始化声音大小50
     // !!!!!!!!!!此处可修改信号与槽!!!!!!!!!!!!!!
     ui->hSlider_voice->setValue(50);//初始化滑动条大小50
+
+   // connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_voice)
 }
 
 Widget::~Widget()
