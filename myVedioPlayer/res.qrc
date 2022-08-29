@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>image/file-open.png</file>
+        <file>image/播放.png</file>
+        <file>image/上一个.png</file>
+        <file>image/停止.png</file>
+        <file>image/下一个.png</file>
+        <file>image/暂停.png</file>
+    </qresource>
+</RCC>
