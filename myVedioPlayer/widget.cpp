@@ -7,6 +7,38 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //注册数据库
+    qDebug()<<QSqlDatabase::drivers();  //打印看看（已经存在的）驱动是什么
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("media.db");
+    qDebug()<<"创建了media.ab数据库";
+
+
+    //打开数据库
+    bool dbok = db.open();
+    if(dbok)
+    {
+        qDebug()<<"成功打开数据库";
+    }
+    else
+    {
+        qDebug()<<db.lastError();
+        exit(-1);
+    }
+    //创建表
+    query=QSqlQuery(db);//20220830 高博洋 遇到问题：必须加这一行，否则会报错：QSqlQuery::exec: database not open
+    query.exec("create table media_info(name text  primary key, url text)");
+    query.exec("delete)");
+    qDebug()<<"成功创建media_info表";
+
+
+    //20220830 高博洋 显示数据库媒体在播放列表
+    model = new QSqlQueryModel;
+    model->setQuery("select * from media_info");
+    model2 = new QSqlQueryModel;
+    model2->setQuery("select name from media_info");
+    ui->tableView->setModel(model2);
+
     //创建对象
     myplayer = new QMediaPlayer;
     myplayerlist = new QMediaPlaylist;
@@ -35,7 +67,9 @@ Widget::Widget(QWidget *parent) :
     //进度条位置变化
     connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_progressBar,&QSlider::setValue);
 
-    //Widget::mouseDoubleClickEvent(event);
+    //监听播放列表的双击
+    connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onItemDBCliked(QModelIndex)));
+
 
 }
 
@@ -145,6 +179,7 @@ void Widget::on_pushButton_open_clicked()
     QStringList mylist=QFileDialog::getOpenFileNames(this,"选择播放资源","C:\\Users\\user\\Desktop","allfiles(*.*);;"
                                                                                                   "MP3(*.mp3);;"
                                                                                                   "MP4(*.mp4);;");
+
     myplayerlist->clear();
     randomplaylist ->clear();
 
@@ -152,8 +187,33 @@ void Widget::on_pushButton_open_clicked()
     {
         myplayerlist->addMedia(QUrl(k));
         randomplaylist->addMedia(QUrl(k));
+        qDebug()<<"open正在调用";
 
-       qDebug()<<"open正在调用";
+        //20220830 高博洋 数据库添加数据
+        /*----获取视频文件的名字---*/
+        int index=-1, lastIndex;
+        do{
+           lastIndex = index;
+           index = k.indexOf('/',index+1);
+        }while(index!=-1);
+        QString name = k.right(k.length()-lastIndex-1);
+        /*---------------------*/
+        QString cmd = QString("insert into media_info(name,url) values('%1','%2')").arg(name).arg(k);
+        if(!query.exec(cmd)){
+              qDebug()<<"Error 2 (insert error)"<<query.lastError().text();
+              return;
+        }
+        else
+        {
+            model->setQuery("select * from media_info");
+            model2->setQuery("select name from media_info");
+            ui->tableView->setModel(model2);
+            qDebug()<<"媒体添加成功";
+        }
+
+
+
+
     }
 
     //20220829 高博洋 优化：打开文件后立即播放文件
@@ -276,4 +336,20 @@ void Widget::mouseDoubleClickEvent(QMouseEvent *event)
         Widget::showNormal();
         qDebug()<<"取消全屏";
     }
+}
+
+/*
+ * 双击播放列表，播放相应视频
+*/
+void Widget::onItemDBCliked(const QModelIndex &index){
+    qDebug()<<index.row();  //打印用户点击的第几行
+    QSqlRecord record = model->record(index.row());  //得到在数据库表中是第几条记录
+    //测试，并且URL中的中文能够正常输出
+    qDebug()<<"媒体文件信息：  name："<<record.value("name").toString()<<"   URL:"<<record.value("url").toString();
+    //播放相应视频，这里应该用绝对路径（否则选择播放源的功能就不能在整个文件管理器进行了）
+
+    QString path = record.value("url").toString();
+    path = QDir::toNativeSeparators(path);
+    myplayer->setMedia(QMediaContent(QUrl::fromLocalFile(path)));
+    startplay();
 }

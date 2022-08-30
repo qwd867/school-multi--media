@@ -210,6 +210,7 @@ Makefile: ../myVedioPlayer/myVedioPlayer.pro D:/QT/5.9.7/mingw53_32/mkspecs/win3
 		D:/QT/5.9.7/mingw53_32/mkspecs/features/qt_config.prf \
 		D:/QT/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		D:/QT/5.9.7/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/QT/5.9.7/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		D:/QT/5.9.7/mingw53_32/mkspecs/features/toolchain.prf \
 		D:/QT/5.9.7/mingw53_32/mkspecs/features/default_pre.prf \
@@ -238,6 +239,7 @@ Makefile: ../myVedioPlayer/myVedioPlayer.pro D:/QT/5.9.7/mingw53_32/mkspecs/win3
 		D:/QT/5.9.7/mingw53_32/lib/Qt5Multimedia.prl \
 		D:/QT/5.9.7/mingw53_32/lib/Qt5Widgets.prl \
 		D:/QT/5.9.7/mingw53_32/lib/Qt5Gui.prl \
+		D:/QT/5.9.7/mingw53_32/lib/Qt5Sql.prl \
 		D:/QT/5.9.7/mingw53_32/lib/Qt5Network.prl \
 		D:/QT/5.9.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ..\myVedioPlayer\myVedioPlayer.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -390,6 +392,7 @@ D:/QT/5.9.7/mingw53_32/mkspecs/features/qt_functions.prf:
 D:/QT/5.9.7/mingw53_32/mkspecs/features/qt_config.prf:
 D:/QT/5.9.7/mingw53_32/mkspecs/win32-g++/qmake.conf:
 D:/QT/5.9.7/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/QT/5.9.7/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/QT/5.9.7/mingw53_32/mkspecs/features/toolchain.prf:
 D:/QT/5.9.7/mingw53_32/mkspecs/features/default_pre.prf:
@@ -418,6 +421,7 @@ D:/QT/5.9.7/mingw53_32/lib/Qt5MultimediaWidgets.prl:
 D:/QT/5.9.7/mingw53_32/lib/Qt5Multimedia.prl:
 D:/QT/5.9.7/mingw53_32/lib/Qt5Widgets.prl:
 D:/QT/5.9.7/mingw53_32/lib/Qt5Gui.prl:
+D:/QT/5.9.7/mingw53_32/lib/Qt5Sql.prl:
 D:/QT/5.9.7/mingw53_32/lib/Qt5Network.prl:
 D:/QT/5.9.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE

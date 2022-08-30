@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QDebug>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QVideoWidget>
@@ -9,6 +10,13 @@
 #include <QString>
 #include <QObject>
 #include <Qt3DInput/QMouseEvent>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlRecord>
 
 namespace Ui {
 class Widget;
@@ -50,12 +58,21 @@ private slots:
 
     void on_pushButton_fullscreen_clicked();
 
+    void onItemDBCliked(const QModelIndex &index);
+
+
 private:
     Ui::Widget *ui;
     QMediaPlayer *myplayer = nullptr;
     QMediaPlaylist *myplayerlist = nullptr;
     QMediaPlaylist *randomplaylist =nullptr;
     QVideoWidget *mywidget = nullptr;
+    QSqlQueryModel *model = nullptr;//包含id,name,url所有属性的model
+    QSqlQueryModel *model2 = nullptr;//只有name属性的model
+    QSqlDatabase db;
+    QSqlQuery query;
+
+
     //QMouseEvent *event = nullptr;
     bool isstart = false;
     bool ismute =false;
