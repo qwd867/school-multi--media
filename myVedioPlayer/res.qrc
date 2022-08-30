@@ -8,5 +8,7 @@
         <file>image/暂停.png</file>
         <file>image/随机播放.png</file>
         <file>image/顺序播放.png</file>
+        <file>image/声音静音.png</file>
+        <file>image/声音.png</file>
     </qresource>
 </RCC>

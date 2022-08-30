@@ -38,6 +38,7 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_next;
     QSpacerItem *horizontalSpacer_5;
+    QPushButton *pushButton_voicestates;
     QSlider *hSlider_voice;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_open;
@@ -109,6 +110,14 @@ public:
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_5);
+
+        pushButton_voicestates = new QPushButton(widget_2);
+        pushButton_voicestates->setObjectName(QStringLiteral("pushButton_voicestates"));
+        pushButton_voicestates->setEnabled(true);
+        pushButton_voicestates->setMaximumSize(QSize(45, 50));
+        pushButton_voicestates->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\243\260\351\237\263.png);"));
+
+        horizontalLayout->addWidget(pushButton_voicestates);
 
         hSlider_voice = new QSlider(widget_2);
         hSlider_voice->setObjectName(QStringLiteral("hSlider_voice"));
@@ -182,6 +191,7 @@ public:
         pushButton_pre->setText(QString());
         pushButton_start_puse->setText(QString());
         pushButton_next->setText(QString());
+        pushButton_voicestates->setText(QString());
         pushButton_open->setText(QString());
         label->setText(QString());
         pushButton_playorder->setText(QString());

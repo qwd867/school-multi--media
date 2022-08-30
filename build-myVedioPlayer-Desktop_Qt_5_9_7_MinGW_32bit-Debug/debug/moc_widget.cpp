@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[12];
-    char stringdata0[260];
+    QByteArrayData data[13];
+    char stringdata0[294];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,7 +42,8 @@ QT_MOC_LITERAL(7, 148, 29), // "on_hSlider_voice_valueChanged"
 QT_MOC_LITERAL(8, 178, 5), // "value"
 QT_MOC_LITERAL(9, 184, 34), // "on_hSlider_progressBar_slider..."
 QT_MOC_LITERAL(10, 219, 8), // "position"
-QT_MOC_LITERAL(11, 228, 31) // "on_pushButton_playorder_clicked"
+QT_MOC_LITERAL(11, 228, 31), // "on_pushButton_playorder_clicked"
+QT_MOC_LITERAL(12, 260, 33) // "on_pushButton_voicestates_cli..."
 
     },
     "Widget\0on_pushButton_start_puse_clicked\0"
@@ -52,7 +53,8 @@ QT_MOC_LITERAL(11, 228, 31) // "on_pushButton_playorder_clicked"
     "on_pushButton_open_clicked\0"
     "on_hSlider_voice_valueChanged\0value\0"
     "on_hSlider_progressBar_sliderMoved\0"
-    "position\0on_pushButton_playorder_clicked"
+    "position\0on_pushButton_playorder_clicked\0"
+    "on_pushButton_voicestates_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,7 +64,7 @@ static const uint qt_meta_data_Widget[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,14 +72,15 @@ static const uint qt_meta_data_Widget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x08 /* Private */,
-       3,    0,   55,    2, 0x08 /* Private */,
-       4,    0,   56,    2, 0x08 /* Private */,
-       5,    0,   57,    2, 0x08 /* Private */,
-       6,    0,   58,    2, 0x08 /* Private */,
-       7,    1,   59,    2, 0x08 /* Private */,
-       9,    1,   62,    2, 0x08 /* Private */,
-      11,    0,   65,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    1,   64,    2, 0x08 /* Private */,
+       9,    1,   67,    2, 0x08 /* Private */,
+      11,    0,   70,    2, 0x08 /* Private */,
+      12,    0,   71,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -87,6 +90,7 @@ static const uint qt_meta_data_Widget[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    8,
     QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -106,6 +110,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 5: _t->on_hSlider_voice_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->on_hSlider_progressBar_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->on_pushButton_playorder_clicked(); break;
+        case 8: _t->on_pushButton_voicestates_clicked(); break;
         default: ;
         }
     }
@@ -136,13 +141,13 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

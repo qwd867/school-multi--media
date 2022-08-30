@@ -43,6 +43,8 @@ private slots:
 
     void on_pushButton_playorder_clicked();
 
+    void on_pushButton_voicestates_clicked();
+
 private:
     Ui::Widget *ui;
     QMediaPlayer *myplayer = nullptr;
@@ -50,6 +52,8 @@ private:
     QMediaPlaylist *randomplaylist =nullptr;
     QVideoWidget *mywidget = nullptr;
     bool isstart = false;
+    bool ismute =false;
+    int volume = 50;
     QString playorder = "order";
 };
 

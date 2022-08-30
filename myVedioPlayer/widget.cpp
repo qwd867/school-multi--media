@@ -21,9 +21,9 @@ Widget::Widget(QWidget *parent) :
 
 
     setWindowTitle("音视频播放器");
-    myplayer->setVolume(50);//初始化声音大小50
+    myplayer->setVolume(volume);//初始化声音大小50
     // !!!!!!!!!!此处可修改信号与槽!!!!!!!!!!!!!!
-    ui->hSlider_voice->setValue(50);//初始化滑动条大小50
+    ui->hSlider_voice->setValue(volume);//初始化滑动条大小50
 
     //固定进度条长度：ui->hSlider_progressBar->setRange(0,100000);
 
@@ -170,4 +170,25 @@ void Widget::on_pushButton_playorder_clicked()
         startplay();
     }
 
+}
+
+void Widget::on_pushButton_voicestates_clicked()
+{
+    if(!ismute)//未静音时点击
+    {
+        ui->pushButton_voicestates->setStyleSheet("QPushButton#pushButton_voicestates{border-image:url(:/new/prefix1/image/声音静音.png)}");
+        ismute=true;
+        volume=myplayer->volume();//保存静音前音量
+        myplayer->setVolume(0);
+        ui->hSlider_voice->setValue(0);//设置滑动条声音为0
+        qDebug()<<"已静音";
+    }
+    else//静音时点击
+    {
+        ui->pushButton_voicestates->setStyleSheet("QPushButton#pushButton_voicestates{border-image:url(:/new/prefix1/image/声音.png)}");
+        ismute=false;
+        myplayer->setVolume(volume);//恢复静音前音量
+        ui->hSlider_voice->setValue(volume);
+        qDebug()<<"取消静音";
+    }
 }
