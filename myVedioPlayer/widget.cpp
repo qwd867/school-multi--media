@@ -33,9 +33,9 @@ Widget::Widget(QWidget *parent) :
 
     //20220830 高博洋 显示数据库媒体在播放列表
     model = new QSqlQueryModel;
-    model->setQuery("select * from media_info");
+    model->setQuery("select * from media_info order by rowid asc");
     model2 = new QSqlQueryModel;
-    model2->setQuery("select name from media_info order by rowid");
+    model2->setQuery("select name from media_info order by rowid asc");
     ui->tableView->setModel(model2);
 
     //创建对象
@@ -54,7 +54,7 @@ Widget::Widget(QWidget *parent) :
 
     QString url;
     QStringList mylist;
-    QString str=QString("select url from media_info");//取出url
+    QString str=QString("select url from media_info order by rowid asc");//取出url    select * from meida_info order by field(rowid>=3，rowid<3)
     query.exec(str);
 
     while (query.next())
@@ -234,10 +234,6 @@ void Widget::on_pushButton_open_clicked()
             ui->tableView->setModel(model2);
             qDebug()<<"媒体添加成功";
         }
-
-
-
-
     }
 
     //20220829 高博洋 优化：打开文件后立即播放文件
@@ -375,5 +371,34 @@ void Widget::onItemDBCliked(const QModelIndex &index){
     QString path = record.value("url").toString();
     path = QDir::toNativeSeparators(path);
     myplayer->setMedia(QMediaContent(QUrl::fromLocalFile(path)));
+
+    QString url;
+    QStringList mylist1;
+    QString str=QString("select url from media_info order by rowid desc");//取出url//此处field()数据库指令执行错误会导致“进入whiel循环体”
+                                                                          //“click数据库赋值播放列表完毕”无法执行,需要正确设置自定义排序功能
+    query.exec(str);
+    qDebug()<<"数据库select完毕";
+
+    while (query.next())
+    {
+            url = query.value("url").toString();
+            mylist1.append(url);                //如果有数据，取第一列,也就是shidu，添加到list
+            qDebug()<<"进入while循环体";
+    }
+
+    if(myplayerlist->clear())
+    {
+        qDebug()<<"myplayerlist->clear";
+    }
+
+    for(const auto & k : mylist1)
+    {
+        myplayerlist->addMedia(QUrl(k));
+        //randomplaylist->addMedia(QUrl(k));
+        qDebug()<<"click数据库赋值播放列表完毕";
+    }
+    myplayer->setPlaylist(myplayerlist);
+    qDebug()<<"这句执行了";
+
     startplay();
 }
