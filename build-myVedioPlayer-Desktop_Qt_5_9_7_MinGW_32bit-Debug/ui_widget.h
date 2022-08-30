@@ -20,7 +20,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,9 +28,6 @@ class Ui_Widget
 {
 public:
     QGridLayout *gridLayout;
-    QWidget *widget_3;
-    QVBoxLayout *verticalLayout;
-    QSlider *hSlider_progressBar;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_stop;
@@ -45,7 +41,13 @@ public:
     QSlider *hSlider_voice;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_open;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label;
+    QWidget *widget_3;
+    QHBoxLayout *horizontalLayout_3;
+    QSlider *hSlider_progressBar;
+    QPushButton *pushButton_playorder;
 
     void setupUi(QWidget *Widget)
     {
@@ -57,23 +59,6 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        widget_3 = new QWidget(Widget);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
-        widget_3->setMaximumSize(QSize(16777215, 100));
-        verticalLayout = new QVBoxLayout(widget_3);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        hSlider_progressBar = new QSlider(widget_3);
-        hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
-        hSlider_progressBar->setMouseTracking(true);
-        hSlider_progressBar->setOrientation(Qt::Horizontal);
-
-        verticalLayout->addWidget(hSlider_progressBar);
-
-
-        gridLayout->addWidget(widget_3, 1, 0, 1, 1);
-
         widget_2 = new QWidget(Widget);
         widget_2->setObjectName(QStringLiteral("widget_2"));
         widget_2->setMaximumSize(QSize(16777215, 70));
@@ -145,10 +130,44 @@ public:
 
         gridLayout->addWidget(widget_2, 2, 0, 1, 1);
 
-        label = new QLabel(Widget);
+        widget = new QWidget(Widget);
+        widget->setObjectName(QStringLiteral("widget"));
+        horizontalLayout_2 = new QHBoxLayout(widget);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
+        label->setMaximumSize(QSize(16777215, 16777215));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        horizontalLayout_2->addWidget(label);
+
+
+        gridLayout->addWidget(widget, 0, 0, 1, 1);
+
+        widget_3 = new QWidget(Widget);
+        widget_3->setObjectName(QStringLiteral("widget_3"));
+        widget_3->setMaximumSize(QSize(16777215, 100));
+        horizontalLayout_3 = new QHBoxLayout(widget_3);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        hSlider_progressBar = new QSlider(widget_3);
+        hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
+        hSlider_progressBar->setMouseTracking(true);
+        hSlider_progressBar->setOrientation(Qt::Horizontal);
+
+        horizontalLayout_3->addWidget(hSlider_progressBar);
+
+        pushButton_playorder = new QPushButton(widget_3);
+        pushButton_playorder->setObjectName(QStringLiteral("pushButton_playorder"));
+        pushButton_playorder->setMaximumSize(QSize(45, 40));
+        pushButton_playorder->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\351\232\217\346\234\272\346\222\255\346\224\276.png);"));
+
+        horizontalLayout_3->addWidget(pushButton_playorder);
+
+
+        gridLayout->addWidget(widget_3, 1, 0, 1, 1);
 
 
         retranslateUi(Widget);
@@ -165,6 +184,7 @@ public:
         pushButton_next->setText(QString());
         pushButton_open->setText(QString());
         label->setText(QString());
+        pushButton_playorder->setText(QString());
     } // retranslateUi
 
 };

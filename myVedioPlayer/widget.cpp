@@ -19,7 +19,6 @@ Widget::Widget(QWidget *parent) :
     myplayer->setVideoOutput(mywidget);//设置输出显示的位置
 
 
-
     setWindowTitle("音视频播放器");
     myplayer->setVolume(50);//初始化声音大小50
     // !!!!!!!!!!此处可修改信号与槽!!!!!!!!!!!!!!
@@ -107,7 +106,11 @@ void Widget::on_pushButton_open_clicked()
     myplayerlist->clear();
 
     for(const auto & k : mylist)
-    myplayerlist->addMedia(QUrl(k));
+    {
+        myplayerlist->addMedia(QUrl(k));
+
+       qDebug()<<"open正在调用";
+    }
 
     //20220829 高博洋 优化：打开文件后立即播放文件
     startplay();
@@ -119,8 +122,40 @@ void Widget::on_hSlider_voice_valueChanged(int value)
     myplayer->setVolume(value);
 }
 
-void Widget::on_hSlider_progressBar_valueChanged(int value)
+/*不应该使用此函数进行进度条拖动，否则视频会变得很卡
+  void Widget::on_hSlider_progressBar_valueChanged(int value)
 {
     //加了这行代码后视频播放就变得一卡一卡的！！！！
-   //myplayer->setPosition(value);
+   myplayer->setPosition(value);
+   qDebug()<<"valuechanged正在运行";
+}*/
+
+void Widget::on_hSlider_progressBar_sliderMoved(int position)
+{
+    myplayer->setPosition(position);
+    qDebug()<<"valuechanged正在运行";
+}
+
+void Widget::on_pushButton_playorder_clicked()
+{
+
+    /*if("order"==playorder)
+    {
+       // qDebug()<<"切换为随机播放";
+        playorder = "shuffle";
+        randomplaylist = myplayerlist;
+        randomplaylist->shuffle();
+        myplayer->setPlaylist(randomplaylist);
+        qDebug()<<"正在随机播放";
+        startplay();
+    }
+    else if("shuffle"==playorder)
+    {
+        //qDebug()<<"切换为顺序播放";
+        playorder="order";
+        myplayer->setPlaylist(myplayerlist);
+        qDebug()<<"正在顺序播放";
+        startplay();
+    }*/
+
 }

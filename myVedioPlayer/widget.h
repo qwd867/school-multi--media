@@ -6,6 +6,7 @@
 #include <QMediaPlaylist>
 #include <QVideoWidget>
 #include <QFileDialog>
+#include <QString>
 
 namespace Ui {
 class Widget;
@@ -36,14 +37,20 @@ private slots:
 
     void on_hSlider_voice_valueChanged(int value);
 
-    void on_hSlider_progressBar_valueChanged(int value);
+    //void on_hSlider_progressBar_valueChanged(int value);
+
+    void on_hSlider_progressBar_sliderMoved(int position);
+
+    void on_pushButton_playorder_clicked();
 
 private:
     Ui::Widget *ui;
     QMediaPlayer *myplayer = nullptr;
     QMediaPlaylist *myplayerlist = nullptr;
+    QMediaPlaylist *randomplaylist =nullptr;
     QVideoWidget *mywidget = nullptr;
     bool isstart = false;
+    QString playorder = "order";
 };
 
 #endif // WIDGET_H
