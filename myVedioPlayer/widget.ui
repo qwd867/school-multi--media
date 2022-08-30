@@ -204,7 +204,7 @@
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QWidget" name="widget" native="true">
+    <widget class="QWidget" name="widget_1" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QLabel" name="label">
@@ -238,6 +238,22 @@
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_fullscreen">
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/new/prefix1/image/全屏.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

@@ -42,12 +42,13 @@ public:
     QSlider *hSlider_voice;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_open;
-    QWidget *widget;
+    QWidget *widget_1;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_3;
     QSlider *hSlider_progressBar;
+    QPushButton *pushButton_fullscreen;
     QPushButton *pushButton_playorder;
 
     void setupUi(QWidget *Widget)
@@ -139,20 +140,20 @@ public:
 
         gridLayout->addWidget(widget_2, 2, 0, 1, 1);
 
-        widget = new QWidget(Widget);
-        widget->setObjectName(QStringLiteral("widget"));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        widget_1 = new QWidget(Widget);
+        widget_1->setObjectName(QStringLiteral("widget_1"));
+        horizontalLayout_2 = new QHBoxLayout(widget_1);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label = new QLabel(widget);
+        label = new QLabel(widget_1);
         label->setObjectName(QStringLiteral("label"));
         label->setMaximumSize(QSize(16777215, 16777215));
 
         horizontalLayout_2->addWidget(label);
 
 
-        gridLayout->addWidget(widget, 0, 0, 1, 1);
+        gridLayout->addWidget(widget_1, 0, 0, 1, 1);
 
         widget_3 = new QWidget(Widget);
         widget_3->setObjectName(QStringLiteral("widget_3"));
@@ -167,6 +168,13 @@ public:
         hSlider_progressBar->setOrientation(Qt::Horizontal);
 
         horizontalLayout_3->addWidget(hSlider_progressBar);
+
+        pushButton_fullscreen = new QPushButton(widget_3);
+        pushButton_fullscreen->setObjectName(QStringLiteral("pushButton_fullscreen"));
+        pushButton_fullscreen->setMaximumSize(QSize(45, 40));
+        pushButton_fullscreen->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\205\250\345\261\217.png);"));
+
+        horizontalLayout_3->addWidget(pushButton_fullscreen);
 
         pushButton_playorder = new QPushButton(widget_3);
         pushButton_playorder->setObjectName(QStringLiteral("pushButton_playorder"));
@@ -194,6 +202,7 @@ public:
         pushButton_voicestates->setText(QString());
         pushButton_open->setText(QString());
         label->setText(QString());
+        pushButton_fullscreen->setText(QString());
         pushButton_playorder->setText(QString());
     } // retranslateUi
 

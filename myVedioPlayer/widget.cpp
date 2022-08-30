@@ -35,6 +35,8 @@ Widget::Widget(QWidget *parent) :
     //进度条位置变化
     connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_progressBar,&QSlider::setValue);
 
+    //Widget::mouseDoubleClickEvent(event);
+
 }
 
 Widget::~Widget()
@@ -163,7 +165,7 @@ void Widget::on_pushButton_playorder_clicked()
     else if("shuffle"==playorder)
     {
         //qDebug()<<"切换为顺序播放";
-        playorder="order";
+        playorder = "order";
         ui->pushButton_playorder->setStyleSheet("QPushButton#pushButton_playorder{border-image:url(:/new/prefix1/image/顺序播放.png)}");
         myplayer->setPlaylist(myplayerlist);
         qDebug()<<"正在顺序播放";
@@ -177,8 +179,8 @@ void Widget::on_pushButton_voicestates_clicked()
     if(!ismute)//未静音时点击
     {
         ui->pushButton_voicestates->setStyleSheet("QPushButton#pushButton_voicestates{border-image:url(:/new/prefix1/image/声音静音.png)}");
-        ismute=true;
-        volume=myplayer->volume();//保存静音前音量
+        ismute = true;
+        volume = myplayer->volume();//保存静音前音量
         myplayer->setVolume(0);
         ui->hSlider_voice->setValue(0);//设置滑动条声音为0
         qDebug()<<"已静音";
@@ -186,9 +188,47 @@ void Widget::on_pushButton_voicestates_clicked()
     else//静音时点击
     {
         ui->pushButton_voicestates->setStyleSheet("QPushButton#pushButton_voicestates{border-image:url(:/new/prefix1/image/声音.png)}");
-        ismute=false;
+        ismute = false;
         myplayer->setVolume(volume);//恢复静音前音量
         ui->hSlider_voice->setValue(volume);
         qDebug()<<"取消静音";
+    }
+}
+
+//按钮点击全屏
+void Widget::on_pushButton_fullscreen_clicked()
+{
+    if(!isfullscreen)
+    {
+        ui->pushButton_fullscreen->setStyleSheet("QPushButton#pushButton_fullscreen{border-image:url(:/new/prefix1/image/退出全屏.png)}");
+        isfullscreen = true;
+        Widget::showFullScreen();
+        qDebug()<<"点击全屏";
+    }
+    else
+    {
+        ui->pushButton_fullscreen->setStyleSheet("QPushButton#pushButton_fullscreen{border-image:url(:/new/prefix1/image/全屏.png)}");
+        isfullscreen = false;
+        Widget::showNormal();
+        qDebug()<<"取消全屏";
+    }
+}
+
+//鼠标双击全屏
+void Widget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if(!isfullscreen)
+    {
+        ui->pushButton_fullscreen->setStyleSheet("QPushButton#pushButton_fullscreen{border-image:url(:/new/prefix1/image/退出全屏.png)}");
+        isfullscreen = true;
+        Widget::showFullScreen();
+        qDebug()<<"点击全屏";
+    }
+    else
+    {
+        ui->pushButton_fullscreen->setStyleSheet("QPushButton#pushButton_fullscreen{border-image:url(:/new/prefix1/image/全屏.png)}");
+        isfullscreen = false;
+        Widget::showNormal();
+        qDebug()<<"取消全屏";
     }
 }

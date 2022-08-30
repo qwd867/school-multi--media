@@ -7,6 +7,8 @@
 #include <QVideoWidget>
 #include <QFileDialog>
 #include <QString>
+#include <QObject>
+#include <Qt3DInput/QMouseEvent>
 
 namespace Ui {
 class Widget;
@@ -22,6 +24,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
+    void mouseDoubleClickEvent ( QMouseEvent * );
     void startplay();
 
 private slots:
@@ -37,7 +40,7 @@ private slots:
 
     void on_hSlider_voice_valueChanged(int value);
 
-    //void on_hSlider_progressBar_valueChanged(int value);
+    //void on_hSlider_progressBar_valueChanged(int value);使用这个会导致播放文件变卡
 
     void on_hSlider_progressBar_sliderMoved(int position);
 
@@ -45,14 +48,18 @@ private slots:
 
     void on_pushButton_voicestates_clicked();
 
+    void on_pushButton_fullscreen_clicked();
+
 private:
     Ui::Widget *ui;
     QMediaPlayer *myplayer = nullptr;
     QMediaPlaylist *myplayerlist = nullptr;
     QMediaPlaylist *randomplaylist =nullptr;
     QVideoWidget *mywidget = nullptr;
+    //QMouseEvent *event = nullptr;
     bool isstart = false;
     bool ismute =false;
+    bool isfullscreen = false;
     int volume = 50;
     QString playorder = "order";
 };
