@@ -23,8 +23,8 @@ public:
     ~Widget();
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void mouseDoubleClickEvent ( QMouseEvent * );
+    void paintEvent(QPaintEvent *paintevent);
+    void mouseDoubleClickEvent ( QMouseEvent *mouseevent );
     void startplay();
 
 private slots:
@@ -60,6 +60,7 @@ private:
     bool isstart = false;
     bool ismute =false;
     bool isfullscreen = false;
+    bool isorderseted = false;
     int volume = 50;
     QString playorder = "order";
 };

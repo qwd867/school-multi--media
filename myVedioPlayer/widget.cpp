@@ -87,6 +87,14 @@ void Widget::on_pushButton_stop_clicked()
 void Widget::on_pushButton_pre_clicked()
 {
     myplayer->stop();
+    if("shuffle"==playorder)
+    {
+        myplayer->setPlaylist(randomplaylist);
+    }
+    else if("order"==playorder)
+    {
+        myplayer->setPlaylist(myplayerlist);
+    }
 
     //20220830 高博洋 优化:使用myplayer而不是myplayerlist,否则randomplaylist只能播放一个
     myplayer->playlist()->previous();
@@ -100,6 +108,22 @@ void Widget::on_pushButton_pre_clicked()
 void Widget::on_pushButton_next_clicked()
 {
     myplayer->stop();
+
+    //判断播放顺序改变后，改变列表是否已经设置完成
+    if(!isorderseted)
+    {
+        isorderseted=true;
+        if("shuffle"==playorder)
+        {
+            myplayer->setPlaylist(randomplaylist);
+        }
+        else if("order"==playorder)
+        {
+            myplayer->setPlaylist(myplayerlist);
+        }
+    }
+
+
 
     //20220830 高博洋 优化:使用myplayer而不是myplayerlist,否则randomplaylist只能播放一个
     myplayer->playlist()->next();
@@ -158,7 +182,12 @@ void Widget::on_pushButton_playorder_clicked()
         playorder = "shuffle";
         ui->pushButton_playorder->setStyleSheet("QPushButton#pushButton_playorder{border-image:url(:/new/prefix1/image/随机播放.png)}");
         randomplaylist->shuffle();
-        myplayer->setPlaylist(randomplaylist);
+        isorderseted = false;
+
+        //20220830 高博洋 优化：将下面这行代码放置到on_pushButton_pre_clicked和on_pushButton_next_clicked中，
+        //                    点击其中一个按钮后myplayer的playlist再发生改变，以便点击playorder按钮时不发生歌曲切换
+        //myplayer->setPlaylist(randomplaylist);
+
         qDebug()<<"正在随机播放";
         startplay();
     }
@@ -167,7 +196,13 @@ void Widget::on_pushButton_playorder_clicked()
         //qDebug()<<"切换为顺序播放";
         playorder = "order";
         ui->pushButton_playorder->setStyleSheet("QPushButton#pushButton_playorder{border-image:url(:/new/prefix1/image/顺序播放.png)}");
-        myplayer->setPlaylist(myplayerlist);
+        isorderseted = false;
+
+        //20220830 高博洋 优化：将下面这行代码放置到on_pushButton_pre_clicked和on_pushButton_next_clicked中，
+        //                    点击其中一个按钮后myplayer的playlist再发生改变，以便点击playorder按钮时不发生歌曲切换
+        //myplayer->setPlaylist(myplayerlist);
+
+        myplayer->playlist();
         qDebug()<<"正在顺序播放";
         startplay();
     }
