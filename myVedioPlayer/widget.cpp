@@ -196,7 +196,9 @@ void Widget::on_pushButton_playorder_clicked()
         //myplayer->setPlaylist(randomplaylist);
 
         qDebug()<<"正在随机播放";
-        startplay();
+
+        //20220830 高博洋 优化：暂停时候切换播放顺序不立即播放
+        //startplay();
     }
     else if("shuffle"==playorder)
     {
@@ -209,9 +211,10 @@ void Widget::on_pushButton_playorder_clicked()
         //                    点击其中一个按钮后myplayer的playlist再发生改变，以便点击playorder按钮时不发生歌曲切换
         //myplayer->setPlaylist(myplayerlist);
 
-        myplayer->playlist();
         qDebug()<<"正在顺序播放";
-        startplay();
+
+        //20220830 高博洋 优化：暂停时候切换播放顺序不立即播放
+        //startplay();
     }
 
 }
