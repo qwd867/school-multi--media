@@ -162,7 +162,7 @@ public:
         pushButton_playorder = new QPushButton(widget_3);
         pushButton_playorder->setObjectName(QStringLiteral("pushButton_playorder"));
         pushButton_playorder->setMaximumSize(QSize(45, 40));
-        pushButton_playorder->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\351\232\217\346\234\272\346\222\255\346\224\276.png);"));
+        pushButton_playorder->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\351\241\272\345\272\217\346\222\255\346\224\276.png);"));
 
         horizontalLayout_3->addWidget(pushButton_playorder);
 

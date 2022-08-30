@@ -7,5 +7,6 @@
         <file>image/下一个.png</file>
         <file>image/暂停.png</file>
         <file>image/随机播放.png</file>
+        <file>image/顺序播放.png</file>
     </qresource>
 </RCC>

@@ -231,7 +231,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/new/prefix1/image/随机播放.png);</string>
+         <string notr="true">border-image: url(:/new/prefix1/image/顺序播放.png);</string>
         </property>
         <property name="text">
          <string/>

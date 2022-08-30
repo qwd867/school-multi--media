@@ -10,6 +10,7 @@ Widget::Widget(QWidget *parent) :
     //创建对象
     myplayer = new QMediaPlayer;
     myplayerlist = new QMediaPlaylist;
+    randomplaylist =new QMediaPlaylist;
     mywidget = new QVideoWidget(ui->label);
 
     mywidget->resize(ui->label->size());//设置播放窗口大小==label标签大小
@@ -84,7 +85,11 @@ void Widget::on_pushButton_stop_clicked()
 void Widget::on_pushButton_pre_clicked()
 {
     myplayer->stop();
-    myplayerlist->previous();
+
+    //20220830 高博洋 优化:使用myplayer而不是myplayerlist,否则randomplaylist只能播放一个
+    myplayer->playlist()->previous();
+    //myplayerlist->previous();
+
     //20220829 高博洋 优化:点击“上一个”按钮后立即播放文件
     startplay();
 
@@ -93,7 +98,11 @@ void Widget::on_pushButton_pre_clicked()
 void Widget::on_pushButton_next_clicked()
 {
     myplayer->stop();
-    myplayerlist->next();
+
+    //20220830 高博洋 优化:使用myplayer而不是myplayerlist,否则randomplaylist只能播放一个
+    myplayer->playlist()->next();
+    //myplayerlist->next();
+
     //20220829 高博洋 优化：点击“下一个”按钮后立即播放文件
     startplay();
 }
@@ -104,10 +113,12 @@ void Widget::on_pushButton_open_clicked()
                                                                                                   "MP3(*.mp3);;"
                                                                                                   "MP4(*.mp4);;");
     myplayerlist->clear();
+    randomplaylist ->clear();
 
     for(const auto & k : mylist)
     {
         myplayerlist->addMedia(QUrl(k));
+        randomplaylist->addMedia(QUrl(k));
 
        qDebug()<<"open正在调用";
     }
@@ -139,11 +150,11 @@ void Widget::on_hSlider_progressBar_sliderMoved(int position)
 void Widget::on_pushButton_playorder_clicked()
 {
 
-    /*if("order"==playorder)
+    if("order"==playorder)
     {
        // qDebug()<<"切换为随机播放";
         playorder = "shuffle";
-        randomplaylist = myplayerlist;
+        ui->pushButton_playorder->setStyleSheet("QPushButton#pushButton_playorder{border-image:url(:/new/prefix1/image/随机播放.png)}");
         randomplaylist->shuffle();
         myplayer->setPlaylist(randomplaylist);
         qDebug()<<"正在随机播放";
@@ -153,9 +164,10 @@ void Widget::on_pushButton_playorder_clicked()
     {
         //qDebug()<<"切换为顺序播放";
         playorder="order";
+        ui->pushButton_playorder->setStyleSheet("QPushButton#pushButton_playorder{border-image:url(:/new/prefix1/image/顺序播放.png)}");
         myplayer->setPlaylist(myplayerlist);
         qDebug()<<"正在顺序播放";
         startplay();
-    }*/
+    }
 
 }
