@@ -64,6 +64,13 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QSlider" name="hSlider_progressBar">
         <property name="mouseTracking">
          <bool>true</bool>

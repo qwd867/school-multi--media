@@ -40,6 +40,7 @@ public:
     QTableView *tableView;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton;
     QSlider *hSlider_progressBar;
     QPushButton *pushButton_fullscreen;
     QPushButton *pushButton_playorder;
@@ -113,6 +114,11 @@ public:
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        pushButton = new QPushButton(widget_2);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        horizontalLayout_3->addWidget(pushButton);
+
         hSlider_progressBar = new QSlider(widget_2);
         hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
         hSlider_progressBar->setMouseTracking(true);
@@ -226,6 +232,7 @@ public:
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", Q_NULLPTR));
         label->setText(QString());
+        pushButton->setText(QString());
         pushButton_fullscreen->setText(QString());
         pushButton_playorder->setText(QString());
         pushButton_stop->setText(QString());

@@ -28,7 +28,6 @@ Widget::Widget(QWidget *parent) :
     //创建表
     query=QSqlQuery(db);//20220830 高博洋 遇到问题：必须加这一行，否则会报错：QSqlQuery::exec: database not open
     query.exec("create table media_info(name text  primary key, url text)");
-    query.exec("delete)");
     qDebug()<<"成功创建media_info表";
 
 
@@ -36,7 +35,7 @@ Widget::Widget(QWidget *parent) :
     model = new QSqlQueryModel;
     model->setQuery("select * from media_info");
     model2 = new QSqlQueryModel;
-    model2->setQuery("select name from media_info");
+    model2->setQuery("select name from media_info order by rowid");
     ui->tableView->setModel(model2);
 
     //创建对象
@@ -46,6 +45,32 @@ Widget::Widget(QWidget *parent) :
     mywidget = new QVideoWidget(ui->label);
 
     mywidget->resize(ui->label->size());//设置播放窗口大小==label标签大小
+
+    //清理播放list
+    myplayerlist->clear();
+    randomplaylist ->clear();
+
+    //myplayerlist初始化
+
+    QString url;
+    QStringList mylist;
+    QString str=QString("select url from media_info");//取出url
+    query.exec(str);
+
+    while (query.next())
+        {
+            url = query.value("url").toString();
+            mylist.append(url);                //如果有数据，取第一列,也就是shidu，添加到list
+        }
+
+    QSqlRecord record = model->record();
+
+    for(const auto & k : mylist)
+    {
+        myplayerlist->addMedia(QUrl(k));
+        randomplaylist->addMedia(QUrl(k));
+        qDebug()<<"数据库赋值播放列表完毕";
+    }
 
     //myplayer赋值初始化
     myplayer->setPlaylist(myplayerlist);//设置播放列表
@@ -69,7 +94,6 @@ Widget::Widget(QWidget *parent) :
 
     //监听播放列表的双击
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onItemDBCliked(QModelIndex)));
-
 
 }
 
@@ -170,6 +194,7 @@ void Widget::on_pushButton_next_clicked()
     myplayer->playlist()->next();
     //myplayerlist->next();
 
+
     //20220829 高博洋 优化：点击“下一个”按钮后立即播放文件
     startplay();
 }
@@ -180,8 +205,7 @@ void Widget::on_pushButton_open_clicked()
                                                                                                   "MP3(*.mp3);;"
                                                                                                   "MP4(*.mp4);;");
 
-    myplayerlist->clear();
-    randomplaylist ->clear();
+
 
     for(const auto & k : mylist)
     {
