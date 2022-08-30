@@ -87,13 +87,19 @@ void Widget::on_pushButton_stop_clicked()
 void Widget::on_pushButton_pre_clicked()
 {
     myplayer->stop();
-    if("shuffle"==playorder)
+    //判断播放顺序改变后，改变列表是否已经设置完成
+    if(!isorderseted)
     {
-        myplayer->setPlaylist(randomplaylist);
-    }
-    else if("order"==playorder)
-    {
-        myplayer->setPlaylist(myplayerlist);
+        isorderseted=true;
+
+        if("shuffle"==playorder)
+        {
+            myplayer->setPlaylist(randomplaylist);
+        }
+        else if("order"==playorder)
+        {
+            myplayer->setPlaylist(myplayerlist);
+        }
     }
 
     //20220830 高博洋 优化:使用myplayer而不是myplayerlist,否则randomplaylist只能播放一个
@@ -113,6 +119,7 @@ void Widget::on_pushButton_next_clicked()
     if(!isorderseted)
     {
         isorderseted=true;
+
         if("shuffle"==playorder)
         {
             myplayer->setPlaylist(randomplaylist);
