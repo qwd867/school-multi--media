@@ -54,13 +54,13 @@ Widget::Widget(QWidget *parent) :
 
     QString url;
     QStringList mylist;
-    QString str=QString("select url from media_info order by rowid asc");//取出url    select * from meida_info order by field(rowid>=3，rowid<3)
+    QString str=QString("select url from media_info order by rowid asc");//取出url
     query.exec(str);
 
     while (query.next())
         {
             url = query.value("url").toString();
-            mylist.append(url);                //如果有数据，取第一列,也就是shidu，添加到list
+            mylist.append(url);                //如果有数据，取第一列,也就是url，添加到list
         }
 
     QSqlRecord record = model->record();
@@ -364,17 +364,22 @@ void Widget::mouseDoubleClickEvent(QMouseEvent *event)
 void Widget::onItemDBCliked(const QModelIndex &index){
     qDebug()<<index.row();  //打印用户点击的第几行
     QSqlRecord record = model->record(index.row());  //得到在数据库表中是第几条记录
+
     //测试，并且URL中的中文能够正常输出
     qDebug()<<"媒体文件信息：  name："<<record.value("name").toString()<<"   URL:"<<record.value("url").toString();
-    //播放相应视频，这里应该用绝对路径（否则选择播放源的功能就不能在整个文件管理器进行了）
 
+    //播放相应视频，这里应该用绝对路径（否则选择播放源的功能就不能在整个文件管理器进行了）
     QString path = record.value("url").toString();
     path = QDir::toNativeSeparators(path);
     myplayer->setMedia(QMediaContent(QUrl::fromLocalFile(path)));
 
+
+
+/****************************************************************************************
+ * **************************************************************************************
     QString url;
     QStringList mylist1;
-    QString str=QString("select url from media_info order by rowid desc");//取出url//此处field()数据库指令执行错误会导致“进入whiel循环体”
+    QString str=QString("select url from media_info order by rowid field(rowid>=3,rowid<3)");//取出url//此处field()数据库指令执行错误会导致“进入whiel循环体”
                                                                           //“click数据库赋值播放列表完毕”无法执行,需要正确设置自定义排序功能
     query.exec(str);
     qDebug()<<"数据库select完毕";
@@ -399,6 +404,21 @@ void Widget::onItemDBCliked(const QModelIndex &index){
     }
     myplayer->setPlaylist(myplayerlist);
     qDebug()<<"这句执行了";
+    *********************************************************************************************
+*************************************************************************************************/
+
+
+    //如果上面的代码能找到数据库自定义排序函数，删除这行代码
+    isorderseted = false;
 
     startplay();
+}
+
+//20220830 李俊 截图功能
+void Widget::on_pushButton_screenshots_clicked()
+{
+    //QPixmap pixmap = QPixmap::grabWidget(this);
+    QPixmap pixmap = QPixmap::grabWindow(this->winId());
+    pixmap.save("d:\\b.png","png");
+    qDebug()<<"已截图保存";
 }

@@ -40,7 +40,7 @@ public:
     QTableView *tableView;
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton;
+    QPushButton *pushButton_screenshots;
     QSlider *hSlider_progressBar;
     QPushButton *pushButton_fullscreen;
     QPushButton *pushButton_playorder;
@@ -114,10 +114,12 @@ public:
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        pushButton = new QPushButton(widget_2);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton_screenshots = new QPushButton(widget_2);
+        pushButton_screenshots->setObjectName(QStringLiteral("pushButton_screenshots"));
+        pushButton_screenshots->setMaximumSize(QSize(45, 40));
+        pushButton_screenshots->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\346\210\252\345\233\276.png);"));
 
-        horizontalLayout_3->addWidget(pushButton);
+        horizontalLayout_3->addWidget(pushButton_screenshots);
 
         hSlider_progressBar = new QSlider(widget_2);
         hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
@@ -232,7 +234,7 @@ public:
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", Q_NULLPTR));
         label->setText(QString());
-        pushButton->setText(QString());
+        pushButton_screenshots->setText(QString());
         pushButton_fullscreen->setText(QString());
         pushButton_playorder->setText(QString());
         pushButton_stop->setText(QString());

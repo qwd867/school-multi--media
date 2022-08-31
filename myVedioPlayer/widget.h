@@ -60,6 +60,7 @@ private slots:
 
     void onItemDBCliked(const QModelIndex &index);
 
+    void on_pushButton_screenshots_clicked();
 
 private:
     Ui::Widget *ui;
