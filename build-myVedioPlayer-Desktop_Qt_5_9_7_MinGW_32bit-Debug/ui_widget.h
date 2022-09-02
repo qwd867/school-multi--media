@@ -23,6 +23,7 @@
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "customslider.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -41,8 +42,8 @@ public:
     QWidget *widget_2;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_screenshots;
-    QSlider *hSlider_progressBar;
-    QPushButton *pushButton_fullscreen;
+    CustomSlider *hSlider_progressBar;
+    QPushButton *pushButton_open;
     QPushButton *pushButton_playorder;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout;
@@ -57,7 +58,7 @@ public:
     QPushButton *pushButton_voicestates;
     QSlider *hSlider_voice;
     QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButton_open;
+    QPushButton *pushButton_fullscreen;
 
     void setupUi(QWidget *Widget)
     {
@@ -121,19 +122,19 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_screenshots);
 
-        hSlider_progressBar = new QSlider(widget_2);
+        hSlider_progressBar = new CustomSlider(widget_2);
         hSlider_progressBar->setObjectName(QStringLiteral("hSlider_progressBar"));
         hSlider_progressBar->setMouseTracking(true);
         hSlider_progressBar->setOrientation(Qt::Horizontal);
 
         horizontalLayout_3->addWidget(hSlider_progressBar);
 
-        pushButton_fullscreen = new QPushButton(widget_2);
-        pushButton_fullscreen->setObjectName(QStringLiteral("pushButton_fullscreen"));
-        pushButton_fullscreen->setMaximumSize(QSize(45, 40));
-        pushButton_fullscreen->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\205\250\345\261\217.png);"));
+        pushButton_open = new QPushButton(widget_2);
+        pushButton_open->setObjectName(QStringLiteral("pushButton_open"));
+        pushButton_open->setMaximumSize(QSize(50, 50));
+        pushButton_open->setStyleSheet(QStringLiteral("border-image: url(:/new/prefix1/image/file-open.png);"));
 
-        horizontalLayout_3->addWidget(pushButton_fullscreen);
+        horizontalLayout_3->addWidget(pushButton_open);
 
         pushButton_playorder = new QPushButton(widget_2);
         pushButton_playorder->setObjectName(QStringLiteral("pushButton_playorder"));
@@ -214,12 +215,12 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_4);
 
-        pushButton_open = new QPushButton(widget_3);
-        pushButton_open->setObjectName(QStringLiteral("pushButton_open"));
-        pushButton_open->setMaximumSize(QSize(50, 50));
-        pushButton_open->setStyleSheet(QStringLiteral("border-image: url(:/new/prefix1/image/file-open.png);"));
+        pushButton_fullscreen = new QPushButton(widget_3);
+        pushButton_fullscreen->setObjectName(QStringLiteral("pushButton_fullscreen"));
+        pushButton_fullscreen->setMaximumSize(QSize(45, 40));
+        pushButton_fullscreen->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\205\250\345\261\217.png);"));
 
-        horizontalLayout->addWidget(pushButton_open);
+        horizontalLayout->addWidget(pushButton_fullscreen);
 
 
         gridLayout->addWidget(widget_3, 2, 0, 1, 1);
@@ -235,14 +236,14 @@ public:
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", Q_NULLPTR));
         label->setText(QString());
         pushButton_screenshots->setText(QString());
-        pushButton_fullscreen->setText(QString());
+        pushButton_open->setText(QString());
         pushButton_playorder->setText(QString());
         pushButton_stop->setText(QString());
         pushButton_pre->setText(QString());
         pushButton_start_puse->setText(QString());
         pushButton_next->setText(QString());
         pushButton_voicestates->setText(QString());
-        pushButton_open->setText(QString());
+        pushButton_fullscreen->setText(QString());
     } // retranslateUi
 
 };

@@ -62,6 +62,8 @@ private slots:
 
     void on_pushButton_screenshots_clicked();
 
+    void sliderClicked();
+
 private:
     Ui::Widget *ui;
     QMediaPlayer *myplayer = nullptr;

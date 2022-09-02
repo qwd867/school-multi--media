@@ -92,6 +92,9 @@ Widget::Widget(QWidget *parent) :
     //进度条位置变化
     connect(myplayer,&QMediaPlayer::positionChanged,ui->hSlider_progressBar,&QSlider::setValue);
 
+    //自定义的信号costomSliderClicked()
+    connect(ui->hSlider_progressBar,SIGNAL(costomSliderClicked()),this,SLOT(sliderClicked()));
+
     //监听播放列表的双击
     connect(ui->tableView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(onItemDBCliked(QModelIndex)));
 
@@ -441,3 +444,12 @@ void Widget::on_pushButton_screenshots_clicked()
     pixmap.save("d:\\b.png","png");
     qDebug()<<"已截图保存";
 }
+
+/*
+* slider点击事件发生后，改变视频的进度
+*/
+void Widget::sliderClicked(){
+    myplayer->setPosition(ui->hSlider_progressBar->value());
+}
+
+

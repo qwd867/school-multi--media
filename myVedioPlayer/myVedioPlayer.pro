@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        widget.cpp
+        widget.cpp \
+    customslider.cpp
 
 HEADERS += \
-        widget.h
+        widget.h \
+    customslider.h
 
 FORMS += \
         widget.ui

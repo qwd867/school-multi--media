@@ -80,7 +80,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSlider" name="hSlider_progressBar">
+       <widget class="CustomSlider" name="hSlider_progressBar">
         <property name="mouseTracking">
          <bool>true</bool>
         </property>
@@ -90,15 +90,15 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_fullscreen">
+       <widget class="QPushButton" name="pushButton_open">
         <property name="maximumSize">
          <size>
-          <width>45</width>
-          <height>40</height>
+          <width>50</width>
+          <height>50</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/new/prefix1/image/全屏.png);</string>
+         <string notr="true">border-image: url(:/new/prefix1/image/file-open.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -289,15 +289,15 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_open">
+       <widget class="QPushButton" name="pushButton_fullscreen">
         <property name="maximumSize">
          <size>
-          <width>50</width>
-          <height>50</height>
+          <width>45</width>
+          <height>40</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/new/prefix1/image/file-open.png);</string>
+         <string notr="true">border-image: url(:/new/prefix1/image/全屏.png);</string>
         </property>
         <property name="text">
          <string/>
@@ -310,6 +310,13 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>CustomSlider</class>
+   <extends>QSlider</extends>
+   <header>customslider.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
