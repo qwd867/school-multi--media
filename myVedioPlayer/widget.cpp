@@ -23,7 +23,7 @@ Widget::Widget(QWidget *parent) :
     else
     {
         qDebug()<<db.lastError();
-        exit(-1);
+        //exit(-1);
     }
     //创建表
     query=QSqlQuery(db);//20220830 高博洋 遇到问题：必须加这一行，否则会报错：QSqlQuery::exec: database not open
@@ -453,3 +453,14 @@ void Widget::sliderClicked(){
 }
 
 
+
+void Widget::on_pushButton_faster_clicked()
+{
+    myplayer->setPosition(myplayer->position()+10000);
+}
+
+
+void Widget::on_pushButton_preer_clicked()
+{
+    myplayer->setPosition(myplayer->position()-10000);
+}

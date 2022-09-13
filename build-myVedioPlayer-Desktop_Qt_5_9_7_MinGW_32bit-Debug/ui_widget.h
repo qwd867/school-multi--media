@@ -49,11 +49,15 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_stop;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *pushButton_preer;
+    QSpacerItem *horizontalSpacer_6;
     QPushButton *pushButton_pre;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_start_puse;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_next;
+    QSpacerItem *horizontalSpacer_7;
+    QPushButton *pushButton_faster;
     QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButton_voicestates;
     QSlider *hSlider_voice;
@@ -164,6 +168,17 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
+        pushButton_preer = new QPushButton(widget_3);
+        pushButton_preer->setObjectName(QStringLiteral("pushButton_preer"));
+        pushButton_preer->setMaximumSize(QSize(45, 45));
+        pushButton_preer->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\277\253\351\200\200.png);"));
+
+        horizontalLayout->addWidget(pushButton_preer);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_6);
+
         pushButton_pre = new QPushButton(widget_3);
         pushButton_pre->setObjectName(QStringLiteral("pushButton_pre"));
         pushButton_pre->setMaximumSize(QSize(45, 45));
@@ -192,6 +207,17 @@ public:
         pushButton_next->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\344\270\213\344\270\200\344\270\252.png);"));
 
         horizontalLayout->addWidget(pushButton_next);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_7);
+
+        pushButton_faster = new QPushButton(widget_3);
+        pushButton_faster->setObjectName(QStringLiteral("pushButton_faster"));
+        pushButton_faster->setMaximumSize(QSize(45, 45));
+        pushButton_faster->setStyleSheet(QString::fromUtf8("border-image: url(:/new/prefix1/image/\345\277\253\350\277\233.png);"));
+
+        horizontalLayout->addWidget(pushButton_faster);
 
         horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -239,9 +265,11 @@ public:
         pushButton_open->setText(QString());
         pushButton_playorder->setText(QString());
         pushButton_stop->setText(QString());
+        pushButton_preer->setText(QString());
         pushButton_pre->setText(QString());
         pushButton_start_puse->setText(QString());
         pushButton_next->setText(QString());
+        pushButton_faster->setText(QString());
         pushButton_voicestates->setText(QString());
         pushButton_fullscreen->setText(QString());
     } // retranslateUi
